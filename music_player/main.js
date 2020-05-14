@@ -22,24 +22,7 @@ const es = function (selector) {
     }
 }
 
-const bindEventPlay = function () {
-    let button = e('#id-button-play')
-    button.addEventListener('click', function (event) {
-        let a = e('#id-audio-player')
-        let isPause = a.paused
-        if (isPause) {
-            log('play it')
-            let b = button.querySelector('.fa-play')
-            b.className = 'fa fa-pause'
-            a.play()
-        } else {
-            log('pause it')
-            let b = button.querySelector('.fa-pause')
-            b.className = 'fa fa-play'
-            a.pause()
-        }
-    })
-}
+
 
 const config = {
     random: false,
@@ -101,6 +84,7 @@ const playBackward = (a) => {
     }
     log(lib[n], n)
     switchSong(a, n)
+    playSong()
     log('back')
 }
 
@@ -116,7 +100,32 @@ const playForward = (a) => {
     }
     log(lib[n], n)
     switchSong(a, n)
+    playSong()
     log('forward')
+}
+
+const playSong = () => {
+    let button = e('#id-button-play')
+    let a = e('#id-audio-player')
+    let isPause = a.paused
+    if (isPause) {
+        log('play it')
+        let b = button.querySelector('.fa-play')
+        b.className = 'fa fa-pause'
+        a.play()
+    } else {
+        log('pause it')
+        let b = button.querySelector('.fa-pause')
+        b.className = 'fa fa-play'
+        a.pause()
+    }
+}
+
+const bindEventPlay = function () {
+    let button = e('#id-button-play')
+    button.addEventListener('click', function (event) {
+        playSong()
+    })
 }
 
 const bindEventBackward = function () {
@@ -246,6 +255,7 @@ const bindEvents = function () {
 
     // 时间轴事件
     bindEventCanplay()
+
 }
 
 const __main = function () {
