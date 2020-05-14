@@ -202,7 +202,6 @@ const choice = function (array) {
 }
 
 const renderPlayer = function (current, duration) {
-    return
     let ratio = current / duration * 100
     // ratio = Math.round(ratio)
     ratio = ratio.toFixed(1)
